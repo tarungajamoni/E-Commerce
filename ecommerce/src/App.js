@@ -2,7 +2,6 @@ import  Counter  from './features/counter/Counter'
 import './App.css';
 import Home from './pages/Home'
 import LoginPage from './pages/LoginPage';
-import Signup from './features/auth/components/Signup';
 
 import {
   createBrowserRouter,
