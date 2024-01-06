@@ -13,7 +13,7 @@ import SignupPage from './pages/SignupPage';
 import Cart from './features/cart/Cart';
 import CartPage from './pages/CartPage';
 import Checkout from './pages/Checkout';
-import ProductDetail from './features/product-list/components/ProductDetails';
+import ProductDetail from './features/product/components/ProductDetails';
 import ProductDetailPage from './pages/ProductDetailPage';
 
 const router = createBrowserRouter([
