@@ -1,0 +1,5 @@
+install json server
+	npm install -g json-server
+initiate server
+	npx json-server data.json --port 8080 or
+	json-server --watch data.json --port 8080

@@ -20,6 +20,13 @@ import { fetchItemsByUserIdAsync } from './features/cart/cartSlice';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectLoggedInUser } from './features/auth/authSlice';
+import PageNotFound from './pages/404';
+import OrderSuccessPage from './pages/OrderSuccessPage';
+import UserOrders from './features/user/components/userOrders';
+import UserOrdersPage from './pages/UserOrdersPage';
+import UserProfile from './features/user/components/UserProfile';
+import UserProfilePage from './pages/UserProfilePage';
+import { fetchLoggedInUserAsync } from './features/user/userSlice';
 
 const router = createBrowserRouter([
   {
@@ -52,6 +59,30 @@ const router = createBrowserRouter([
 
     </Protected>),
   },
+  {
+    path: "/order-success/:id",
+    element: (
+      <OrderSuccessPage></OrderSuccessPage>
+    ),
+  },
+  {
+    path: "/orders",
+    element: (
+      <UserOrdersPage></UserOrdersPage>
+    ),
+  },
+  {
+    path: "/profile",
+    element: (
+      <UserProfilePage></UserProfilePage>
+    ),
+  },
+  {
+    path: "*",
+    element: (
+      <PageNotFound></PageNotFound>
+    ),
+  },
 ]);
 
 function App() {
@@ -61,6 +92,7 @@ function App() {
   useEffect(()=>{
     if(user) {
       dispatch(fetchItemsByUserIdAsync(user.id))
+      dispatch(fetchLoggedInUserAsync(user.id))
       
           }
     
