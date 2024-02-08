@@ -7,6 +7,7 @@ import {
   selectAllProducts,
   selectBrands,
   selectCategories,
+  selectProductListStatus,
   selectTotalItems,
 } from '../productSlice';
 import { Dialog, Disclosure, Menu, Transition } from '@headlessui/react';
@@ -43,6 +44,7 @@ export default function ProductList() {
   const brands = useSelector(selectBrands);
   const categories = useSelector(selectCategories);
   const totalItems = useSelector(selectTotalItems);
+  const status = useSelector(selectProductListStatus);
   const filters = [
     {
       id: 'category',
@@ -60,6 +62,7 @@ export default function ProductList() {
   const [sort, setSort] = useState({});
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
   const [page, setPage] = useState(1);
+
   const handleFilter = (e, section, option) => {
     console.log(e.target.checked);
     const newFilter = { ...filter };
@@ -88,7 +91,7 @@ export default function ProductList() {
   };
 
   const handlePage = (page) => {
-    console.log({ page });
+    console.log({ page });    
     setPage(page);
   };
 
@@ -199,7 +202,7 @@ export default function ProductList() {
               ></DesktopFilter>
               {/* Product grid */}
               <div className="lg:col-span-3">
-                <ProductGrid products={products}></ProductGrid>
+                <ProductGrid products={products} status={status}></ProductGrid>
               </div>
               {/* Product grid end */}
             </div>
@@ -393,9 +396,7 @@ function DesktopFilter({ handleFilter, filters }) {
   );
 }
 
-
-
-function ProductGrid({ products }) {
+function ProductGrid({ products, status }) {
   return (
     <div className="bg-white">
       <div className="mx-auto max-w-2xl px-4 py-0 sm:px-6 sm:py-0 lg:max-w-7xl lg:px-8">
@@ -425,8 +426,7 @@ function ProductGrid({ products }) {
                   </div>
                   <div>
                     <p className="text-sm block font-medium text-gray-900">
-                      $
-                      {discountedPrice(product)}
+                      ${discountedPrice(product)}
                     </p>
                     <p className="text-sm block line-through font-medium text-gray-400">
                       ${product.price}
@@ -438,7 +438,12 @@ function ProductGrid({ products }) {
                     <p className="text-sm text-red-400">product deleted</p>
                   </div>
                 )}
-                {/* will not be needed when backend is implemented */}
+                {product.stock <= 0 && (
+                  <div>
+                    <p className="text-sm text-red-400">out of stock</p>
+                  </div>
+                )}
+                {/* TODO: will not be needed when backend is implemented */}
               </div>
             </Link>
           ))}
