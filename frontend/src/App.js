@@ -3,6 +3,7 @@ import './App.css';
 import Home from './pages/Home';
 import LoginPage from './pages/LoginPage';
 import SignupPage from './pages/SignupPage';
+
 import { createBrowserRouter, Link, RouterProvider } from 'react-router-dom';
 import CartPage from './pages/CartPage';
 import Checkout from './pages/Checkout';
@@ -24,12 +25,12 @@ import AdminHome from './pages/AdminHome';
 import AdminProductDetailPage from './pages/AdminProductDetailPage';
 import AdminProductFormPage from './pages/AdminProductFormPage';
 import AdminOrdersPage from './pages/AdminOrdersPage';
-// import { positions, Provider } from 'react-alert';
-// import AlertTemplate from 'react-alert-template-basic';
-const options = {
-  timeout: 5000,
-  //position: positions.BOTTOM_LEFT,
-};
+
+// const options = {
+//   timeout: 5000,
+//   position: positions.BOTTOM_LEFT,
+// };
+
 const router = createBrowserRouter([
   {
     path: '/',
@@ -113,7 +114,6 @@ const router = createBrowserRouter([
   },
   {
     path: '/order-success/:id',
-    
     element: (
       <Protected>
         <OrderSuccessPage></OrderSuccessPage>{' '}
@@ -122,7 +122,6 @@ const router = createBrowserRouter([
   },
   {
     path: '/orders',
-    
     element: (
       <Protected>
         <UserOrdersPage></UserOrdersPage>{' '}
@@ -131,7 +130,6 @@ const router = createBrowserRouter([
   },
   {
     path: '/profile',
-  
     element: (
       <Protected>
         <UserProfilePage></UserProfilePage>{' '}
@@ -151,24 +149,26 @@ const router = createBrowserRouter([
     element: <PageNotFound></PageNotFound>,
   },
 ]);
+
 function App() {
   const dispatch = useDispatch();
   const user = useSelector(selectLoggedInUser);
+
   useEffect(() => {
     if (user) {
-      dispatch(fetchItemsByUserIdAsync(user.id));
-      dispatch(fetchLoggedInUserAsync(user.id));
+      dispatch(fetchItemsByUserIdAsync());
+      dispatch(fetchLoggedInUserAsync());
     }
   }, [dispatch, user]);
+
   return (
     <>
       <div className="App">
-        {/* <Provider template={AlertTemplate} {...options}> */}
-          <RouterProvider router={router} />
-        {/* </Provider> */}
+        <RouterProvider router={router} />
         {/* Link must be inside the Provider */}
       </div>
     </>
   );
 }
+
 export default App;

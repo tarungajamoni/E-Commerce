@@ -9,7 +9,6 @@ import {
 import { Link } from 'react-router-dom';
 import { Navigate } from 'react-router-dom';
 import { discountedPrice } from '../../app/constants';
-//import { Grid } from 'react-loader-spinner';
 import Modal from '../common/Modal';
 
 export default function Cart() {
@@ -44,25 +43,13 @@ export default function Cart() {
               Cart
             </h1>
             <div className="flow-root">
-              {/* {status === 'loading' ? (
-                <Grid
-                  height="80"
-                  width="80"
-                  color="rgb(79, 70, 229) "
-                  ariaLabel="grid-loading"
-                  radius="12.5"
-                  wrapperStyle={{}}
-                  wrapperClass=""
-                  visible={true}
-                />
-              ) : null} */}
               <ul className="-my-6 divide-y divide-gray-200">
                 {items.map((item) => (
                   <li key={item.id} className="flex py-6">
                     <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
                       <img
-                        src={item.product.thumbnail}
-                        alt={item.product.title}
+                        src={item.thumbnail}
+                        alt={item.title}
                         className="h-full w-full object-cover object-center"
                       />
                     </div>
