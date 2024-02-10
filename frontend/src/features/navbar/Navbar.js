@@ -98,7 +98,7 @@ function NavBar({ children }) {
                             <span className="sr-only">Open user menu</span>
                             <img
                               className="h-8 w-8 rounded-full"
-                              src='https://pbs.twimg.com/profile_images/890978394845831169/zN_wNKvs_400x400.jpg'
+                              src={user.imageUrl}
                               alt=""
                             />
                           </Menu.Button>
@@ -183,6 +183,7 @@ function NavBar({ children }) {
                     </div>
                     <div className="ml-3">
                       <div className="text-base font-medium leading-none text-white">
+                        {/* this should come from userInfo */}
                         {user.name}
                       </div>
                       <div className="text-sm font-medium leading-none text-gray-400">

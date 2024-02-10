@@ -63,7 +63,7 @@ function ProductForm() {
     <form
       noValidate
       onSubmit={handleSubmit((data) => {
-        console.log(data,'ppppppp');
+        console.log(data);
         const product = { ...data };
         product.images = [
           product.image1,
@@ -83,13 +83,10 @@ function ProductForm() {
         if (params.id) {
           product.id = params.id;
           product.rating = selectedProduct.rating || 0;
-          
           dispatch(updateProductAsync(product));
           reset();
         } else {
-          console.log( product)
           dispatch(createProductAsync(product));
-
           reset();
           //TODO:  on product successfully added clear fields and show a message
         }
@@ -163,7 +160,7 @@ function ProductForm() {
                 >
                   <option value="">--choose brand--</option>
                   {brands.map((brand) => (
-                    <option value={brand.value}>{brand.label}</option>
+                    <option key={brand.value} value={brand.value}>{brand.label}</option>
                   ))}
                 </select>
               </div>
@@ -184,7 +181,7 @@ function ProductForm() {
                 >
                   <option value="">--choose category--</option>
                   {categories.map((category) => (
-                    <option value={category.value}>{category.label}</option>
+                    <option key={category.value} value={category.value}>{category.label}</option>
                   ))}
                 </select>
               </div>

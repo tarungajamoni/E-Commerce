@@ -18,7 +18,6 @@ export function fetchProductById(id) {
 }
 
 export function createProduct(product) {
-  console.log(product,"ooooo")
   return new Promise(async (resolve) => {
     const response = await fetch('http://localhost:8080/products/', {
       method: 'POST',
@@ -64,7 +63,6 @@ export function fetchProductsByFilters(filter, sort, pagination) {
   for (let key in sort) {
     queryString += `${key}=${sort[key]}&`;
   }
-  console.log(pagination);
   for (let key in pagination) {
     queryString += `${key}=${pagination[key]}&`;
   }
@@ -76,7 +74,7 @@ export function fetchProductsByFilters(filter, sort, pagination) {
     );
     const data = await response.json();
     const totalItems = await response.headers.get('X-Total-Count');
-    resolve({ data: { products: data, totalItems : +totalItems } });
+    resolve({ data: { products: data, totalItems: +totalItems } });
   });
 }
 
