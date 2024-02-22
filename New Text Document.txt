@@ -1,0 +1,13 @@
+Your pairing code is: virtue-regard-grin-likes
+This pairing code verifies your authentication with Stripe.
+Press Enter to open the browser or visit https://dashboard.stripe.com/stripecli/confirm_auth?t=iFudXjoqA5ODtb99Wb8mCKg4WsZUazpW (^C to quit)
+> Done! The Stripe CLI is configured for your account with account id acct_1OiatdSHz4xJM5os
+
+Please note: this key will expire after 90 days, at which point you'll need to re-authenticate.
+
+C:\Users\SAI TARUN\Dev Projects\MERN>stripe listen --forward-to localhost:4242/webhook
+> Ready! You are using Stripe API Version [2023-10-16]. Your webhook signing secret is whsec_21835280480d23acc4edd4af4346b23303d9b705d14ca5ab8988b3dad8333295
+
+
+C:\Users\SAI TARUN\Dev Projects\MERN>stripe listen --forward-to localhost:8080/webhook
+> Ready! You are using Stripe API Version [2023-10-16]. Your webhook signing secret is whsec_21835280480d23acc4edd4af4346b23303d9b705d14ca5ab8988b3dad8333295

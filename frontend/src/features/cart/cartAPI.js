@@ -11,10 +11,10 @@ export function addToCart(item) {
   });
 }
 
-export function fetchItemsByUserId() {
+export function fetchItemsByUserId(userId) {
   return new Promise(async (resolve) => {
     //TODO: we will not hard-code server URL here
-    const response = await fetch('http://localhost:8080/cart');
+    const response = await fetch('http://localhost:8080/cart?user=' + userId);
     const data = await response.json();
     resolve({ data });
   });
@@ -45,14 +45,18 @@ export function deleteItemFromCart(itemId) {
   });
 }
 
-export function resetCart() {
-  // get all items of user's cart - and then delete each
+export function resetCart(userId) {
   return new Promise(async (resolve) => {
-    const response = await fetchItemsByUserId();
-    const items = response.data;
-    for (let item of items) {
-      await deleteItemFromCart(item.id);
+    const response = await fetchItemsByUserId(userId);
+    
+    if (response && Array.isArray(response.data)) {
+      const items = response.data;
+      for (let item of items) {
+        await deleteItemFromCart(item.id);
+      }
+      resolve({ status: 'success' });
+    } else {
+      resolve({ status: 'error', message: 'Invalid response data' });
     }
-    resolve({ status: 'success' });
   });
 }

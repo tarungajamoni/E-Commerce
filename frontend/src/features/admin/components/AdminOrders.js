@@ -14,7 +14,6 @@ import {
   ArrowDownIcon,
 } from '@heroicons/react/24/outline';
 import Pagination from '../../common/Pagination';
-
 function AdminOrders() {
   const [page, setPage] = useState(1);
   const dispatch = useDispatch();
@@ -22,30 +21,25 @@ function AdminOrders() {
   const totalOrders = useSelector(selectTotalOrders);
   const [editableOrderId, setEditableOrderId] = useState(-1);
   const [sort, setSort] = useState({});
-
   const handleEdit = (order) => {
     setEditableOrderId(order.id);
   };
   const handleShow = () => {
     console.log('handleShow');
   };
-
   const handleUpdate = (e, order) => {
     const updatedOrder = { ...order, status: e.target.value };
     dispatch(updateOrderAsync(updatedOrder));
     setEditableOrderId(-1);
   };
-
   const handlePage = (page) => {
     setPage(page);
   };
-
   const handleSort = (sortOption) => {
     const sort = { _sort: sortOption.sort, _order: sortOption.order };
     console.log({ sort });
     setSort(sort);
   };
-
   const chooseColor = (status) => {
     switch (status) {
       case 'pending':
@@ -60,12 +54,10 @@ function AdminOrders() {
         return 'bg-purple-200 text-purple-600';
     }
   };
-
   useEffect(() => {
     const pagination = { _page: page, _limit: ITEMS_PER_PAGE };
     dispatch(fetchAllOrdersAsync({ sort, pagination }));
   }, [dispatch, page, sort]);
-
   return (
     <div className="overflow-x-auto">
       <div className="bg-gray-100 flex items-center justify-center font-sans overflow-hidden">
@@ -116,6 +108,7 @@ function AdminOrders() {
               </thead>
               <tbody className="text-gray-600 text-sm font-light">
                 {orders.map((order) => (
+                  
                   <tr key={order.id} className="border-b border-gray-200 hover:bg-gray-100">
                     <td className="py-3 px-6 text-left whitespace-nowrap">
                       <div className="flex items-center">
@@ -124,18 +117,18 @@ function AdminOrders() {
                       </div>
                     </td>
                     <td className="py-3 px-6 text-left">
+                      
                       {order.items.map((item, index) => (
                         <div key={index}  className="flex items-center">
                           <div className="mr-2">
                             <img
                               className="w-6 h-6 rounded-full"
-                              src={item.product.thumbnail}
-                              alt={item.product.title}
+                              src={item.thumbnail}
                             />
                           </div>
                           <span>
-                            {item.product.title} - #{item.quantity} - $
-                            {discountedPrice(item.product)}
+                            {item.title} - #{item.quantity} - $
+                            {discountedPrice(item)}
                           </span>
                         </div>
                       ))}
@@ -207,5 +200,4 @@ function AdminOrders() {
     </div>
   );
 }
-
 export default AdminOrders;
