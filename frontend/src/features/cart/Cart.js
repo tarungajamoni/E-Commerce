@@ -35,7 +35,7 @@ export default function Cart() {
 
   return (
     <>
-      {!items.length && <Navigate to="/" replace={true}></Navigate>}
+      {/* {!items.length && <Navigate to="/" replace={true}></Navigate>} */}
 
       <div>
         <div className="mx-auto mt-12 bg-white max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -163,5 +163,6 @@ export default function Cart() {
         </div>
       </div>
     </>
+    
   );
 }
