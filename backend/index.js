@@ -13,10 +13,11 @@ const usersRouter = require('./routes/Users');
 const authRouter = require('./routes/Auth');
 const cartRouter = require('./routes/Cart');
 const ordersRouter = require('./routes/Order');
+const path = require('path')
 
 
 //middlewares
-
+server.use(express.static(path.resolve(__dirname,'build')));
 server.use(cors({
     exposedHeaders:['X-Total-Count']
 }))
